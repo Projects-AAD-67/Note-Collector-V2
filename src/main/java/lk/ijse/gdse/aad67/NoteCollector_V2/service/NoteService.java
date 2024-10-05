@@ -1,7 +1,7 @@
 package lk.ijse.gdse.aad67.NoteCollector_V2.service;
 
-import lk.ijse.gdse.aad67.notecollecter67.dto.NoteStatus;
-import lk.ijse.gdse.aad67.notecollecter67.dto.impl.NoteDTO;
+import lk.ijse.gdse.aad67.NoteCollector_V2.dto.NoteStatus;
+import lk.ijse.gdse.aad67.NoteCollector_V2.dto.impl.NoteDTO;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package lk.ijse.gdse.aad67.NoteCollector_V2.entity.impl;
 
 import jakarta.persistence.*;
-import lk.ijse.gdse.aad67.notecollecter67.entity.SuperEntity;
+import lk.ijse.gdse.aad67.NoteCollector_V2.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

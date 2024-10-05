@@ -1,15 +1,15 @@
 package lk.ijse.gdse.aad67.NoteCollector_V2.service.impl;
 
 import jakarta.transaction.Transactional;
-import lk.ijse.gdse.aad67.notecollecter67.customStatusCodes.SelectedUserAndNoteErrorStatus;
-import lk.ijse.gdse.aad67.notecollecter67.dao.UserDao;
-import lk.ijse.gdse.aad67.notecollecter67.dto.UserStatus;
-import lk.ijse.gdse.aad67.notecollecter67.dto.impl.UserDTO;
-import lk.ijse.gdse.aad67.notecollecter67.entity.impl.UserEntity;
-import lk.ijse.gdse.aad67.notecollecter67.exception.DataPersistException;
-import lk.ijse.gdse.aad67.notecollecter67.exception.UserNotFoundException;
-import lk.ijse.gdse.aad67.notecollecter67.service.UserService;
-import lk.ijse.gdse.aad67.notecollecter67.util.Mapping;
+import lk.ijse.gdse.aad67.NoteCollector_V2.customStatusCodes.SelectedUserAndNoteErrorStatus;
+import lk.ijse.gdse.aad67.NoteCollector_V2.dao.UserDao;
+import lk.ijse.gdse.aad67.NoteCollector_V2.dto.UserStatus;
+import lk.ijse.gdse.aad67.NoteCollector_V2.dto.impl.UserDTO;
+import lk.ijse.gdse.aad67.NoteCollector_V2.entity.impl.UserEntity;
+import lk.ijse.gdse.aad67.NoteCollector_V2.exception.DataPersistException;
+import lk.ijse.gdse.aad67.NoteCollector_V2.exception.UserNotFoundException;
+import lk.ijse.gdse.aad67.NoteCollector_V2.service.UserService;
+import lk.ijse.gdse.aad67.NoteCollector_V2.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
