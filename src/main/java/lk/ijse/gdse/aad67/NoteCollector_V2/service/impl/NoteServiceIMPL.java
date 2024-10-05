@@ -1,11 +1,13 @@
 package lk.ijse.gdse.aad67.NoteCollector_V2.service.impl;
 
 import jakarta.transaction.Transactional;
+import lk.ijse.gdse.aad67.NoteCollector_V2.customStatusCodes.SelectedUserAndNoteErrorStatus;
 import lk.ijse.gdse.aad67.NoteCollector_V2.dao.NoteDao;
 import lk.ijse.gdse.aad67.NoteCollector_V2.dto.NoteStatus;
 import lk.ijse.gdse.aad67.NoteCollector_V2.dto.impl.NoteDTO;
 import lk.ijse.gdse.aad67.NoteCollector_V2.entity.impl.NoteEntity;
 import lk.ijse.gdse.aad67.NoteCollector_V2.exception.DataPersistException;
+import lk.ijse.gdse.aad67.NoteCollector_V2.exception.NoteNotFoundException;
 import lk.ijse.gdse.aad67.NoteCollector_V2.service.NoteService;
 import lk.ijse.gdse.aad67.NoteCollector_V2.util.AppUtil;
 import lk.ijse.gdse.aad67.NoteCollector_V2.util.Mapping;
