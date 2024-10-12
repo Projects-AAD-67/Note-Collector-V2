@@ -43,7 +43,7 @@ public class JWTServiceIMPL implements JWTService {
        final Claims claims = getClaims(token);
        return claimsResolve.apply(claims);
     }
-
+    //internal process
     private Claims getClaims(String token) {
        return Jwts.parser().setSigningKey(getSignKey()).build().parseClaimsJwt(token)
                 .getBody();
