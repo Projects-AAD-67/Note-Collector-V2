@@ -36,8 +36,8 @@ public class JWTServiceIMPL implements JWTService {
     }
 
     @Override
-    public String refreshToken(String prevToken) {
-        return "";
+    public String refreshToken(UserDetails userDetails) {
+        return refreshToken(new HashMap<>(),userDetails);
     }
     private <T> T extractClaim(String token, Function<Claims,T> claimsResolve) {
        final Claims claims = getClaims(token);
@@ -60,6 +60,16 @@ public class JWTServiceIMPL implements JWTService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(now)
                 .setExpiration(expiration)
+                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
+    }
+    private String refreshToken(Map<String, Object> genClaimsRefresh, UserDetails userDetails) {
+        genClaimsRefresh.put("role",userDetails.getAuthorities());
+        Date now = new Date();
+        Date refreshExpire = new Date(now.getTime() + 1000 * 600 * 600);
+
+        return Jwts.builder().setClaims(genClaimsRefresh)
+                .setSubject(userDetails.getUsername())
+                .setExpiration(refreshExpire)
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
     private boolean isTokenExpired(String token) {
