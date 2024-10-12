@@ -34,7 +34,6 @@ public class JWTServiceIMPL implements JWTService {
         String userName = extractUserName(token);
         return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-
     @Override
     public String refreshToken(UserDetails userDetails) {
         return refreshToken(new HashMap<>(),userDetails);

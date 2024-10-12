@@ -51,13 +51,7 @@ public class JWTConfigFilter extends OncePerRequestFilter {
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 emptyContext.setAuthentication(authToken);
                 SecurityContextHolder.setContext(emptyContext);
-
-
-
-
-
             }
-
         }
         filterChain.doFilter(request, response);
     }
