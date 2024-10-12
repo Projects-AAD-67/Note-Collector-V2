@@ -2,6 +2,8 @@ package lk.ijse.gdse.aad67.NoteCollector_V2.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -21,6 +23,12 @@ public class SecurityConfig {
                 .authenticationProvider()
                 .addFilterBefore();
         return http.build();
+    }
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider dap =
+                new DaoAuthenticationProvider();
+        dap.setUserDetailsService();
+
 
     }
 }
