@@ -50,7 +50,6 @@ public class AuthUserController {
             buildUserDTO.setPassword(passwordEncoder.encode(password));
             buildUserDTO.setRole(Role.valueOf(role));
             buildUserDTO.setProfilePic(base64ProPic);
-            //Todo: Change with auth user service;
             return ResponseEntity.ok(authService.signUp(buildUserDTO));
         } catch (DataPersistException e) {
             e.printStackTrace();
