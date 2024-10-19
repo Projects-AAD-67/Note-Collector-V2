@@ -22,40 +22,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> saveUser(
-           @RequestPart ("firstName") String firstName,
-           @RequestPart ("lastName") String lastName,
-           @RequestPart ("email") String email,
-           @RequestPart ("password") String password,
-           @RequestPart ("profilePic") MultipartFile profilePic
-    ) {
-         // profilePic ----> Base64
-        String base64ProPic = "";
-        try {
-            byte [] bytesProPic = profilePic.getBytes();
-            base64ProPic = AppUtil.profilePicToBase64(bytesProPic);
-            //UserId generate
-            String userId = AppUtil.generateUserId();
-            //Build the Object
-            UserDTO buildUserDTO = new UserDTO();
-            buildUserDTO.setUserId(userId);
-            buildUserDTO.setFirstName(firstName);
-            buildUserDTO.setLastName(lastName);
-            buildUserDTO.setEmail(email);
-            buildUserDTO.setPassword(password);
-            buildUserDTO.setProfilePic(base64ProPic);
-            userService.saveUser(buildUserDTO);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (DataPersistException e){
-            e.printStackTrace();
-           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     @GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public UserStatus getSelectedUser(@PathVariable ("userId") String userId){
         if(!RegexProcess.userIdMatcher(userId)){
