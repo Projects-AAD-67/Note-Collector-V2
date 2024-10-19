@@ -1,9 +1,11 @@
 package lk.ijse.gdse.aad67.NoteCollector_V2.controller;
 
 import lk.ijse.gdse.aad67.NoteCollector_V2.dto.impl.UserDTO;
+import lk.ijse.gdse.aad67.NoteCollector_V2.entity.Role;
 import lk.ijse.gdse.aad67.NoteCollector_V2.exception.DataPersistException;
 import lk.ijse.gdse.aad67.NoteCollector_V2.secure.JWTAuthResponse;
 import lk.ijse.gdse.aad67.NoteCollector_V2.secure.SignIn;
+import lk.ijse.gdse.aad67.NoteCollector_V2.service.AuthService;
 import lk.ijse.gdse.aad67.NoteCollector_V2.service.UserService;
 import lk.ijse.gdse.aad67.NoteCollector_V2.util.AppUtil;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class AuthUserController {
     private final UserService userService;
-    // private final AuthService authService;
+    private final AuthService authService;
     private final PasswordEncoder passwordEncoder;
     @PostMapping(value = "signup", consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,7 +30,9 @@ public class AuthUserController {
             @RequestPart("lastName") String lastName,
             @RequestPart("email") String email,
             @RequestPart("password") String password,
+            @RequestPart("role") String role,
             @RequestPart("profilePic") MultipartFile profilePic
+            //add role
     ) {
         // profilePic ----> Base64
         String base64ProPic = "";
@@ -44,9 +48,10 @@ public class AuthUserController {
             buildUserDTO.setLastName(lastName);
             buildUserDTO.setEmail(email);
             buildUserDTO.setPassword(passwordEncoder.encode(password));
+            buildUserDTO.setRole(Role.valueOf(role));
             buildUserDTO.setProfilePic(base64ProPic);
-            //Todo: Chane with auth user service
-            userService.saveUser(buildUserDTO);
+            //Todo: Change with auth user service
+            authService.signUp(buildUserDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e) {
             e.printStackTrace();
@@ -59,10 +64,12 @@ public class AuthUserController {
     @PostMapping("signin")
     public ResponseEntity<JWTAuthResponse> signIn(@RequestBody SignIn signIn){
         //
+        return null;
     }
     @PostMapping("refresh")
     public ResponseEntity<JWTAuthResponse> signIn(@RequestParam ("refreshToken") String refreshToken) {
         //
+        return null;
     }
 
 
